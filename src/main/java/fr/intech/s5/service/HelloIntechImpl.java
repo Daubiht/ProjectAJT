@@ -5,7 +5,7 @@ public class HelloIntechImpl implements HelloIntech {
 	@Override
 	public String sayHello(String pName) {
 		// TODO Auto-generated method stub
-		return "Hello"+pName;
+		return "Hello "+pName;
 	}
 
 }
