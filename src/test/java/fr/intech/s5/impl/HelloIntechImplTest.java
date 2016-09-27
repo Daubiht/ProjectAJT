@@ -18,7 +18,7 @@ public class HelloIntechImplTest {
 	@Before
 	public void before() {
 		context = new ClassPathXmlApplicationContext("app-context.xml");
-		hello = (HelloIntech) context.getBean("hello");
+		hello = (HelloIntech) context.getBean("hello");	
 	}
 	
 	@Test
