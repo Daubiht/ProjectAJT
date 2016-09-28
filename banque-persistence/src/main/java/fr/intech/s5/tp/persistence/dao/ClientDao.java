@@ -17,5 +17,8 @@ public interface ClientDao {
 	public Client rechercherClientParId(long pidClient) throws BanqueException;
 	
 	@Transactional(propagation=Propagation.MANDATORY)
+	public Client rechercherClientparEmail(String pEmail) throws BanqueException;
+	
+	@Transactional(propagation=Propagation.MANDATORY)
 	public List<Client> rechercherTousLesClients() throws BanqueException;
 }
