@@ -136,7 +136,11 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>fr.intech.s5</groupId>
+  <artifactId>banque-business</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+		</dependency>
 </dependencies>
 	<build>
 	<finalName>Banque</finalName>
