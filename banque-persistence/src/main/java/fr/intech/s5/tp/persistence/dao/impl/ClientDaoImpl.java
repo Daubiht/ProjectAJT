@@ -16,13 +16,14 @@ public class ClientDaoImpl implements ClientDao {
 	SessionFactory sessionFactory;
 	
 	@Override
-	public void ajouterClient(Client pclient) throws BanqueException {
+	public Long ajouterClient(Client pclient) throws BanqueException {
+		Long idClient = null;
 		try {
-			sessionFactory.getCurrentSession().save(pclient);
+			idClient = (Long) sessionFactory.getCurrentSession().save(pclient);
 		}catch(Exception e) {
 			throw new BanqueException("Erreur lors de l'enregistrement du client.", e);
 		}
-		
+		return idClient;
 	}
 
 	@Override
@@ -38,9 +39,9 @@ public class ClientDaoImpl implements ClientDao {
 
 	@Override
 	public List<Client> rechercherTousLesClients() throws BanqueException {
-		List<Client> listClient = new ArrayList<>();
+		List<Client> listClient = null;
 		try {
-			String query = "from client as c";
+			String query = "from Client as c";
 			listClient = sessionFactory.getCurrentSession().createQuery(query).getResultList();
 		}catch(Exception e) {
 			throw new BanqueException("Erreur d'obtention de la liste des clients.", e );

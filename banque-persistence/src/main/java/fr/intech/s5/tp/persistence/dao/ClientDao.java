@@ -11,7 +11,7 @@ import fr.intech.s5.tp.persistence.model.Client;
 public interface ClientDao {
 	
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=BanqueException.class)
-	public void ajouterClient(Client pclient) throws BanqueException;
+	public Long ajouterClient(Client pclient) throws BanqueException;
 	
 	@Transactional(propagation=Propagation.MANDATORY)
 	public Client rechercherClientParId(long pidClient) throws BanqueException;

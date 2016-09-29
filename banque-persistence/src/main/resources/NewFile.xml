@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+	<property name="url" value="jdbc:hsqldb:mem:banque;sql.enforce_strict_size=false"></property>
+	<property name="username" value="sa"></property>
+	<property name="password" value=""></property>
+	<property name="initialSize" value="5"></property>
+	<property name="maxActive" value="20"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="packagesToScan">
+	<list>
+	<value>fr.intech.s5.tp.banque.persistence.model</value>
+	</list>
+	</property>
+	<property name="hibernateProperties">
+	<props>
+	<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+	<prop key="hibernate.show_sql">true</prop>
+	<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+	</props>
+	</property>
+	</bean>
+	<context:component-scan base-package="fr.intech.s5"></context:component-scan>
+	<bean id="clientDao"
+		class="fr.intech.s5.tp.persistence.dao.impl.ClientDaoImpl">
+	</bean>
+	<bean id="compteDao"
+		class="fr.intech.s5.tp.persistence.dao.impl.CompteDaoImpl">
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<tx:annotation-driven />
+</beans>
