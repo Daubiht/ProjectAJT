@@ -11,6 +11,14 @@ import javax.persistence.Table;
 @Table(name="compte")
 public class Compte {
 	
+	public double getSolde() {
+		return solde;
+	}
+
+	public void setSolde(double solde) {
+		this.solde = solde;
+	}
+
 	@Id
 	@Column(name="numero_compte")
 	private long numeroCompte;

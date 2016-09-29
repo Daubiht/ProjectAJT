@@ -49,4 +49,15 @@ public class ClientDaoImpl implements ClientDao {
 		return listClient;
 	}
 
+	@Override
+	public Client rechercherClientparEmail(String pEmail) throws BanqueException {
+		Client client = null;
+		try {
+			client = (Client) sessionFactory.getCurrentSession().get(Client.class, new String(pEmail));
+		}catch(Exception e) {
+			throw new BanqueException("Erreur lors de la récupération du client.", e);
+		}
+		return client;
+	}
+
 }
